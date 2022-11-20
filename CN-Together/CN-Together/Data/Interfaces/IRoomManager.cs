@@ -6,6 +6,9 @@ namespace CN_Together.Data.Interfaces
     {
         public List<Hint> Hints { get; set; }
 
+        event RoomManager.Notify UpdateMessagesEvent;
+
         void AddMassage(Hint message);
+        void ResetMessages();
     }
 }

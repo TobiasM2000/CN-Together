@@ -6,12 +6,18 @@
 <PageTitle>Codenames together!</PageTitle>
 
 <div>
+    <table>
+        <tr>
+            <th>Hint</th>
+            <th>Number</th>
+        </tr>
     @foreach (var hint in this.RoomManager.Hints)
     {
-        <div style="color: @hint.Team">
-            @hint.Message @hint.Number
-        </div>
-    }
+        <tr>
+            <th style="color: @hint.Team">@hint.Message</th>
+            <th style ="color: @hint.Team">@hint.Number</th>
+        </tr>    }
+    </table>
 </div>
 
 <button @onclick="this.OpenLoginPage">
@@ -19,5 +25,5 @@
 </button>
 
 <button @onclick="this.ResetRoom">
-    Reset room
+    Reset the chat
 </button>

@@ -21,5 +21,6 @@ namespace CN_Together.Pages
         {
             this.RoomManager.AddMassage(new Data.Models.Hint("Hello", 1, this.team));
         }
+
     }
 }

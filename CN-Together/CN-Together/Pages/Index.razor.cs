@@ -11,8 +11,7 @@ namespace CN_Together.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            this.RoomManager.AddMassage(new Hint("test", 3, Data.Enums.Team.Blue));
-            this.RoomManager.AddMassage(new Hint("test3", 3, Data.Enums.Team.Red));
+            this.RoomManager.UpdateMessagesEvent += this.UpdateView;
 
         }
 
@@ -23,7 +22,7 @@ namespace CN_Together.Pages
 
         private void ResetRoom()
         {
-
+            this.RoomManager.ResetMessages();
         }
 
         public async void UpdateView()
