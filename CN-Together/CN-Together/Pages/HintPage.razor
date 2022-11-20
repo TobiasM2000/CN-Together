@@ -1,0 +1,13 @@
+﻿@page "/team/{Color}"
+@using CN_Together.Data.Interfaces;
+@inject IRoomManager RoomManager
+
+<PageTitle>Team blue</PageTitle>
+
+<div style="color: @this.Color">
+    hello
+</div>
+
+<button @onclick="this.AddMassage">
+    Add Message
+</button>

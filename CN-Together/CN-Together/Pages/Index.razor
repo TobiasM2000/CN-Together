@@ -1,9 +1,23 @@
 ﻿@page "/"
+@using CN_Together.Data.Interfaces;
+@inject NavigationManager NavigationManager
+@inject IRoomManager RoomManager
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Codenames together!</PageTitle>
 
-<h1>Hello, world!</h1>
+<div>
+    @foreach (var hint in this.RoomManager.Hints)
+    {
+        <div style="color: @hint.Team">
+            @hint.Message @hint.Number
+        </div>
+    }
+</div>
 
-Welcome to your new app.
+<button @onclick="this.OpenLoginPage">
+    join a team
+</button>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<button @onclick="this.ResetRoom">
+    Reset room
+</button>
