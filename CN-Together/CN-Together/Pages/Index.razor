@@ -5,25 +5,30 @@
 
 <PageTitle>Codenames together!</PageTitle>
 
-<div>
-    <table>
-        <tr>
-            <th>Hint</th>
-            <th>Number</th>
-        </tr>
-    @foreach (var hint in this.RoomManager.Hints)
-    {
-        <tr>
-            <th style="color: @hint.Team">@hint.Message</th>
-            <th style ="color: @hint.Team">@hint.Number</th>
-        </tr>    }
-    </table>
+<div style="align-content:flex-end">
+     <div>
+        Hints:
+        <table width="300px">
+            @foreach (var hint in this.RoomManager.Hints)
+            {
+                <tr>
+                    <th style="color: @hint.Team">@hint.Message</th>
+                    <th style="color: @hint.Team">@hint.Number</th>
+                </tr>
+            }
+        </table>
+    </div>
+    <button @onclick="this.ResetRoom" style="margin-top: 200px">
+        Reset the chat
+    </button>
 </div>
 
-<button @onclick="this.OpenLoginPage">
-    join a team
-</button>
+<div style="align-content:flex-end">
+    <div>
+        Scan the QR-Code to join a team:
+    </div>
+    <div class="modal-content">
+        <img src="@QRCodeString" style="width: 300px; height: 300px" />
+    </div>
+</div>
 
-<button @onclick="this.ResetRoom">
-    Reset the chat
-</button>

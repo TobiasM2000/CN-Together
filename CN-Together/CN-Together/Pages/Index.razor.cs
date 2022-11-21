@@ -1,23 +1,39 @@
-﻿using CN_Together.Data;
-using CN_Together.Data.Models;
-using System.IO;
+﻿using QRCoder;
+using System.Drawing.Imaging;
+
 
 namespace CN_Together.Pages
 {
     public partial class Index
     {
-        private readonly string loginPage = "/login"; 
-        
+        private readonly string loginPage = "/login";
+        private string QRCodeString = string.Empty;
 
         protected override async Task OnInitializedAsync()
         {
             this.RoomManager.UpdateMessagesEvent += this.UpdateView;
 
+            this.QRCodeString = this.GenerateQRString();
         }
 
-        private void OpenLoginPage()
+        private string GenerateQRString()
         {
-            this.NavigationManager.NavigateTo(this.loginPage);
+            using (var ms = new MemoryStream())
+            {
+                var uri = new Uri(this.NavigationManager.Uri);
+                var generator = new PayloadGenerator.Url($"{uri.Scheme}://{uri.Authority}/login");
+                var payload = generator.ToString();
+
+                var qrGenerator = new QRCodeGenerator();
+                var qrCodeData = qrGenerator.CreateQrCode(payload, QRCodeGenerator.ECCLevel.Q);
+                var qrCode = new QRCode(qrCodeData);
+
+                using (var oBitmap = qrCode.GetGraphic(20))
+                {
+                    oBitmap.Save(ms, ImageFormat.Png);
+                    return "data:image/png;base64, " + Convert.ToBase64String(ms.ToArray());
+                }
+            }
         }
 
         private void ResetRoom()
@@ -29,5 +45,6 @@ namespace CN_Together.Pages
         {
             await this.InvokeAsync(() => { this.StateHasChanged(); });
         }
+
     }
 }
