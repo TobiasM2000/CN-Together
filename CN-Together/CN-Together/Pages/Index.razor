@@ -5,7 +5,7 @@
 
 <PageTitle>Codenames together!</PageTitle>
 
-<div style="align-content:flex-end">
+<div class="box">
      <div>
         Hints:
         <table width="300px">
@@ -19,16 +19,16 @@
         </table>
     </div>
     <button @onclick="this.ResetRoom" style="margin-top: 200px">
-        Reset the chat
+        Start new game
     </button>
 </div>
 
-<div style="align-content:flex-end">
+<div style="align-content:flex-end" class="box">
     <div>
         Scan the QR-Code to join a team:
     </div>
     <div class="modal-content">
-        <img src="@QRCodeString" style="width: 300px; height: 300px" />
+        <img src="@QRCodeString" style="width: 50%; height: 50%" />
     </div>
 </div>
 

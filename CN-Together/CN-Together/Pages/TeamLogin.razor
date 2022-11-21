@@ -1,24 +1,13 @@
 ﻿@page "/login"
 @inject NavigationManager NavigationManager
 
-<h3>TeamLogin</h3>
+<h3>Select your team:</h3>
 
+<button style="color:red; width:40%; height:40%; padding: 0" class="box" @onclick="this.JoinTeamRed">
+    <img src="jpg/red.jpg" alt="Team red" style="width:100%; height:100%" />
+</button>
 
-<div style="font-size:large">
-    Join a team:
-</div>
+<button style="color:blue; width:40%; height:40%; padding: 0" class="box" @onclick="this.JoinTeamBlue">
+    <img src="jpg/blue.jpg" alt="Team blue" style="width:100%; height:100%"/>
+</button>
 
-<table>
-    <tr>
-        <th>
-            <button style="color:red" @onclick="this.JoinTeamRed">
-                Team red
-            </button>
-        </th>
-        <th>
-            <button style="color:blue" @onclick="this.JoinTeamBlue">
-                Team blue
-            </button>
-        </th>
-    </tr>
-</table>
