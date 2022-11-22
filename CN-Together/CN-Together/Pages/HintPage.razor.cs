@@ -7,6 +7,11 @@ namespace CN_Together.Pages
     {
         [Parameter] public string Color { get; set; } = string.Empty;
 
+        public bool giveHint { get; set; } = true;
+
+        private string selectedNumber { get; set; } = "0";
+        private string hint { get; set; } = "";
+
         private Team team;
 
         protected override async Task OnInitializedAsync()
@@ -17,10 +22,34 @@ namespace CN_Together.Pages
                 this.team = Team.Red;
         }
 
-        public void AddMassage()
+        public void GiveHint()
         {
-            this.RoomManager.AddMassage(new Data.Models.Hint("Hello", 1, this.team));
+            this.RoomManager.AddMassage(new Data.Models.Hint(this.hint, this.selectedNumber, this.team));
         }
 
+        private void ChangeNumber(ChangeEventArgs e)
+        {
+            try
+            {
+                this.selectedNumber = e.Value.ToString();
+            }
+            catch
+            {
+                this.selectedNumber = "0";
+            }
+
+        }
+        private void ChangeHint(ChangeEventArgs e)
+        {
+            try
+            {
+                this.hint = e.Value.ToString();
+            }
+            catch
+            {
+                this.hint = "0";
+            }
+
+        }
     }
 }
