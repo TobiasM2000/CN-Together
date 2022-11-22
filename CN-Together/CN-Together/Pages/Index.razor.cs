@@ -38,7 +38,7 @@ namespace CN_Together.Pages
 
         private void ResetRoom()
         {
-            this.RoomManager.ResetMessages();
+            this.RoomManager.ResetHints(Data.Enums.Team.Red);
         }
 
         public async void UpdateView()

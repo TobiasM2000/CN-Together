@@ -1,4 +1,5 @@
-﻿using CN_Together.Data.Models;
+﻿using CN_Together.Data.Enums;
+using CN_Together.Data.Models;
 
 namespace CN_Together.Data.Interfaces
 {
@@ -7,8 +8,13 @@ namespace CN_Together.Data.Interfaces
         public List<Hint> Hints { get; set; }
 
         event RoomManager.Notify UpdateMessagesEvent;
+        event RoomManager.Notify RedStartRound;
+        event RoomManager.Notify RedEndRound;
+        event RoomManager.Notify BlueStartRound;
+        event RoomManager.Notify BlueEndRound;
 
         void AddMassage(Hint message);
-        void ResetMessages();
+        void ResetHints(Team beginningTeam);
+        Team GetBeginningTeam();
     }
 }
