@@ -10,14 +10,15 @@ namespace CN_Together.Data
 
         private Team teamGivesHint { get; set; } = Team.Red;
 
-        public void AddMassage(Hint message)
+        public void AddMessage(Hint message)
         {
+            this.Hints.Add(message);
+
             if (message.Team.Equals(Team.Red)) //message from team red -> next round team blue
                 this.TeamBlueTurn();
             else
                 this.TeamRedTurn();
 
-            this.Hints.Add(message);
             this.UpdateMessagesEvent?.Invoke();
         }
 
@@ -52,6 +53,23 @@ namespace CN_Together.Data
             this.BlueStartRound?.Invoke();
         }
 
+        public void RequestHint(Hint h)
+        {
+            if(h.Team.Equals(Team.Blue))
+                this.HintReqestTeamFromBlue?.Invoke(h);
+            else
+                this.HintReqestTeamFromRed?.Invoke(h);
+        }
+
+        public void RequestAnswer(Hint enemyHint, bool b)
+        {
+            if (b)
+                this.AddMessage(enemyHint);
+
+            this.AcceptHintRequestForRed?.Invoke(b, enemyHint);
+            this.AcceptHintRequestForBlue?.Invoke(b, enemyHint);
+        }
+
         #region Events
 
         public delegate void Notify();
@@ -63,6 +81,16 @@ namespace CN_Together.Data
 
         public event Notify BlueStartRound;
         public event Notify BlueEndRound;
+
+        public delegate void NotifyBool(bool b, Hint t);
+
+        public event NotifyBool AcceptHintRequestForRed; 
+        public event NotifyBool AcceptHintRequestForBlue;
+
+        public delegate void NotityHint(Hint h);
+
+        public event NotityHint HintReqestTeamFromRed;
+        public event NotityHint HintReqestTeamFromBlue;
 
         #endregion
 

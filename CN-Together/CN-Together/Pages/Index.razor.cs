@@ -6,7 +6,6 @@ namespace CN_Together.Pages
 {
     public partial class Index
     {
-        private readonly string loginPage = "/login";
         private string QRCodeString = string.Empty;
 
         protected override async Task OnInitializedAsync()

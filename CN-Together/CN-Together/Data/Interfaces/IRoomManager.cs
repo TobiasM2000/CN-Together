@@ -12,9 +12,15 @@ namespace CN_Together.Data.Interfaces
         event RoomManager.Notify RedEndRound;
         event RoomManager.Notify BlueStartRound;
         event RoomManager.Notify BlueEndRound;
+        event RoomManager.NotifyBool AcceptHintRequestForRed;
+        event RoomManager.NotifyBool AcceptHintRequestForBlue;
+        event RoomManager.NotityHint HintReqestTeamFromRed;
+        event RoomManager.NotityHint HintReqestTeamFromBlue;
 
-        void AddMassage(Hint message);
+        void AddMessage(Hint message);
         void ResetHints(Team beginningTeam);
         Team GetBeginningTeam();
+        void RequestHint(Hint h);
+        void RequestAnswer(Hint enemyHint, bool v);
     }
 }
