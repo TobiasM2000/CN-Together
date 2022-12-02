@@ -7,6 +7,7 @@ namespace CN_Together.Pages
     public partial class Index
     {
         private string QRCodeString = string.Empty;
+        private bool startNewGame = true;
 
         protected override async Task OnInitializedAsync()
         {
@@ -37,7 +38,21 @@ namespace CN_Together.Pages
 
         private void ResetRoom()
         {
+            this.startNewGame= false;
+            this.UpdateView();
+        }
+
+        private void StartNewGameRed()
+        {
             this.RoomManager.ResetHints(Data.Enums.Team.Red);
+            this.startNewGame = true;
+            this.UpdateView();
+        }
+        private void StartNewGameBlue()
+        {
+            this.RoomManager.ResetHints(Data.Enums.Team.Blue);
+            this.startNewGame = true;
+            this.UpdateView();
         }
 
         public async void UpdateView()

@@ -6,22 +6,38 @@
 <PageTitle>Codenames together!</PageTitle>
 
 <div class="box">
-     <div>
-        Hints:
-        <table width="300px">
-            @foreach (var hint in this.RoomManager.Hints)
-            {
-                <tr>
-                    <th style="color: @hint.Team">@hint.Message</th>
-                    <th style="color: @hint.Team">@hint.Number</th>
-                </tr>
-            }
-        </table>
-    </div>
-    <button @onclick="this.ResetRoom" style="margin-top: 200px">
-        Start new game
-    </button>
+    @if (this.startNewGame)
+    {
+            <div>
+                Hints:
+                <table width="300px">
+                    @foreach (var hint in this.RoomManager.Hints)
+                    {
+                        <tr>
+                            <th style="color: @hint.Team">@hint.Message</th>
+                            <th style="color: @hint.Team">@hint.Number</th>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <button @onclick="this.ResetRoom" style="margin-top: 200px">
+                Start new game
+            </button>
+    }
+    else
+    {
+        <div>
+            Which team should start:
+        </div>
+        <button @onclick="this.StartNewGameRed" style="border-color:red; color:red">
+            Red
+        </button>
+        <button @onclick="this.StartNewGameBlue" style="border-color:blue; color:blue">
+            Blue
+        </button>
+    }
 </div>
+
 
 <div style="align-content:flex-end" class="box">
     <div>
