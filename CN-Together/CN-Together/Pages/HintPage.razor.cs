@@ -170,6 +170,11 @@ namespace CN_Together.Pages
             this.UpdateView();
         }
 
+        private void Logout()
+        {
+            this.NavigateTo("/");
+        }
+
         private void NavigateTo(string path)
         {
             this.NavigationManager.NavigateTo(path);

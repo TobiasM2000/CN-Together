@@ -12,7 +12,7 @@
 
 @if (!this.showContent)
 {
-    <div>...waiting for enemy`s hint</div>
+    <div>...enemy is  thinking</div>
 }
 else
 {
@@ -60,3 +60,7 @@ else
         <button @onclick="this.DenyEnemyHint">Deny</button>
     }
 }
+
+<div>
+    <button @onclick="this.Logout" style="position:absolute; top:10px; right:10px; background-color:transparent">Logout</button>
+</div>
